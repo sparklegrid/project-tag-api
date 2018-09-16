@@ -23,7 +23,7 @@ function logColor(msg, color) {
 module.exports = function () {
 	mongoose.set('useCreateIndex', true);
 
-	mongoose.connect(config.MONGO_URI, {
+	mongoose.connect(config.MONGODB_URI, {
 		useNewUrlParser: true,
 		// autoIndex: false
 	}).catch();
@@ -32,9 +32,9 @@ module.exports = function () {
 	const mongoDb = mongoose.connection;
 
 	mongoDb.once('open', function callback() {
-		console.info(logColor('Connected to MongoDB:', 'green'), config.MONGO_URI);
+		console.info(logColor('Connected to MongoDB:', 'green'), config.MONGODB_URI);
 	});
 	mongoDb.on('error', () => {
-		console.error(logColor('MongoDB Connection Error. Please make sure that', 'yellow'), config.MONGO_URI, logColor('is running.', 'yellow'));
+		console.error(logColor('MongoDB Connection Error. Please make sure that', 'yellow'), config.MONGODB_URI, logColor('is running.', 'yellow'));
 	});
 };

@@ -21,7 +21,12 @@ function logColor(msg, color) {
 }
 
 module.exports = function () {
-	mongoose.connect(config.MONGO_URI, {useNewUrlParser: true}).catch();
+	mongoose.set('useCreateIndex', true);
+
+	mongoose.connect(config.MONGO_URI, {
+		useNewUrlParser: true,
+		// autoIndex: false
+	}).catch();
 	mongoose.Promise = global.Promise;
 
 	const mongoDb = mongoose.connection;
